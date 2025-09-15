@@ -2,7 +2,7 @@
   "name": "firecrawl-scraper-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "start": "tsc && node dist/src/harness.js --start-built",
     "dev": "tsx src/harness.ts --start",
@@ -30,7 +30,8 @@
     "mongo-docker-console": "docker exec -it mongodb mongosh",
     "run-example": "npx ts-node src/example.ts",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org caleb-peffer --project firecrawl-scraper-js ./dist && sentry-cli sourcemaps upload --org caleb-peffer --project firecrawl-scraper-js ./dist",
-    "prepare": "cd ../.. && husky ./apps/api/.husky"
+    "prepare": "cd ../.. && husky ./apps/api/.husky",
+    "knip": "knip"
   },
   "author": "",
   "license": "ISC",
@@ -55,7 +56,6 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
-    "ts-prune": "^0.10.3",
     "tsc-watch": "^7.1.1",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
@@ -115,7 +115,7 @@
     "mammoth": "^1.7.2",
     "marked": "^14.1.2",
     "ollama-ai-provider": "^1.2.0",
-    "openai": "^5.20.0",
+    "openai": "^5.20.2",
     "parse-diff": "^0.11.1",
     "pdf-parse": "^1.1.1",
     "pg": "^8.16.3",
@@ -135,7 +135,7 @@
     "uuid": "^10.0.0",
     "winston": "^3.14.2",
     "ws": "^8.18.0",
-    "x402-express": "^0.5.3",
+    "x402-express": "^0.6.0",
     "xml2js": "^0.6.2",
     "zod": "^3.24.2"
   },
@@ -148,21 +148,27 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@mendable/firecrawl-rs",
       "@sentry-internal/node-cpu-profiler",
+      "@sentry/cli",
       "bigint-buffer",
       "bufferutil",
+      "esbuild",
       "keccak",
+      "koffi",
       "libpq",
+      "msgpackr-extract",
+      "protobufjs",
+      "supabase",
       "utf-8-validate",
-      "supabase"
+      "wordpos"
     ],
     "overrides": {
       "brace-expansion@>=2.0.0 <=2.0.1": "2.0.2"
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write",
-    "*.{js,tsx,ts,tsx}": "ts-prune --skip \"native/\" --error"
+    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
   },
   "packageManager": "pnpm@10.15.1"
 }
